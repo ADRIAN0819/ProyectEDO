@@ -32,7 +32,8 @@ Proyecto de ecuaciones diferenciales 2025-1 modelo quartercar solucion smulado R
 | Elemento | Descripción |
 |---|---|
 | **Propósito** | Mapear en un **heat-map** el error relativo entre RK4 (h = 1 ms) y la solución analítica del escalón, para una malla de rigidez \(k\) y amortiguamiento \(c\). |
-| **Malla de parámetros** | \(k\in[5,16]\,\text{kN/m}\) (8 puntos) y \(c\in[1,5]\,\text{kNs/m}\) (8 puntos). |
+| **Malla de parámetros** |  |
+| &nbsp;– $k \in [5, 16]\,\text{kN/m}$ (8 puntos)  <br> &nbsp;– $c \in [1, 5]\,\text{kNs/m}$ (8 puntos) |
 | **Cálculo del error** | Norma 2: \(\lVert x_\text{num}-x_\text{ref}\rVert / \lVert x_\text{ref}\rVert\) en %. |
 | **Visualización** | `imshow` con barra de color; ejes etiquetados en unidades SI. |
 | **Salida** | `error_heatmap.pdf` (matriz de error relativo) |
