@@ -35,7 +35,58 @@ Proyecto de ecuaciones diferenciales 2025-1 modelo quartercar solucion smulado R
 
 ---
 
+## `generar_resultados_parametricos.py`
 
+| Elemento | Descripción |
+|----------|-------------|
+| **Propósito** | Ejecutar un **barrido paramétrico** sobre rigidez $k$ y amortiguamiento $c$ para el modelo quarter-car, evaluando dos métricas: aceleración RMS frente a un escalón (ISO 2631-1) y transmisibilidad máxima $T_{\max}$ frente a senos de 1–10 Hz. |
+| **Rango de barrido** | $k \in [8{\,000},25{\,000}]\,\text{N/m}$ (paso 1 000).<br>$c \in [1{\,000},5{\,000}]\,\text{N·s/m}$ (paso 200). |
+| **Método numérico** | `solve_ivp(method="RK45")` (paso adaptativo, tolerancias por defecto). |
+| **Salidas** | `resultados_parametricos.xlsx` + `resultados_parametricos.csv`, con 6 columnas por combinación:<br>  – $k$, $c$<br>  – RMS [m/s²], $T_{\max}$<br>  – flags lógicos `Cumple_RMS`, `Cumple_T`. |
+
+---
+
+## `rk4.py`
+
+| Elemento | Descripción |
+|----------|-------------|
+| **Propósito** | Búsqueda rápida de **parámetros óptimos** dentro de sub-rangos ($k\!=\!10$–20 kN/m, $c\!=\!1$–5 kN·s/m) usando la misma lógica de evaluación pero con **RK45** explícito para la simulación en línea. |
+| **Criterio de selección** | Se acepta la pareja \((k,c)\) si:<br>  – RMS $<0.315$ m/s²<br>  – $\max T(\omega)<1.2$.<br>La mejor se elige por el menor $T_{\max}$. |
+| **Visualizaciones** | 1. Desplazamiento ante escalón para \((k_{\text{opt}},c_{\text{opt}})\).<br>2. Curva $T(\omega)$ con límite 1.2. |
+| **Salida por consola** | Imprime el par óptimo y sus métricas. |
+
+---
+
+## `sensibilidad.py`
+
+| Elemento | Descripción |
+|----------|-------------|
+| **Propósito** | Analizar la **sensibilidad** de las métricas en torno al par óptimo variando $c$ ± 10 % (con $k$ fijo). |
+| **Entrada** | `resultados_parametricos.csv` generado por el barrido global. |
+| **Salida** | `sensibilidad_optimo.csv` con columnas $c$, RMS y $T_{\max}$.<br>Dos figuras: RMS vs $c$ y $T_{\max}$ vs $c$ con sus límites normativos. |
+
+---
+
+## `visualizacion.py`
+
+| Elemento | Descripción |
+|----------|-------------|
+| **Propósito** | Crear un **heat-map** de $T_{\max}$ en el plano $(k,c)$ y listar por pantalla las combinaciones que cumplen simultáneamente ambos criterios. |
+| **Datos fuente** | `resultados_parametricos.csv`. |
+| **Bibliotecas** | `seaborn` (para el mapa de calor). |
+| **Salida** | Ventana con el mapa de calor “T_max”, sin archivo persistente. |
+
+---
+
+## `visualizacion2.py`
+
+| Elemento | Descripción |
+|----------|-------------|
+| **Propósito** | Generar el **heat-map** equivalente pero para la aceleración RMS. |
+| **Datos y flujo** | Idénticos a `visualizacion.py`, cambiando la variable pivot (`RMS [m/s^2]`). |
+| **Salida** | Ventana con el mapa de calor “RMS”. |
+
+---
 
 ## Cómo ejecutar
 
