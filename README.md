@@ -1,5 +1,5 @@
-# ProyectEDO
-Proyecto de ecuaciones diferenciales 2025-1 modelo quartercar solucion smulado RK5 analitica 
+# Proyecto Ecuaciones Diferenciales ciclo 2025-1
+Proyecto de ecuaciones diferenciales
 
 ## `comp_sine_overlay.py`
 
