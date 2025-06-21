@@ -105,4 +105,4 @@ if mejores:
     
     plt.show()
 else:
-    print("❌ No se encontró combinación (k,c) que cumpla ambos criterios.")
+    print("No se encontró combinación (k,c) que cumpla ambos criterios.")
