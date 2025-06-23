@@ -91,6 +91,8 @@ Proyecto de ecuaciones diferenciales
 ## Cómo ejecutar
 
 ```bash
+#descargar el informe via zip
+
 # Activar entorno
 python -m venv .venv && source .venv/bin/activate
 pip install numpy matplotlib
